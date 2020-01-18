@@ -1,0 +1,34 @@
+# This configuration file is for the **development** setup.
+# For a production example please refer to setup/docker-compose.yml.
+version: '3.6'
+services:
+  spark-master:
+    image: ${SPARK_IMAGE_PREFIX}-master:${SPARK_BRANCH}
+    container_name: spark-master
+    depends_on:
+      - cassandra
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+    volumes:
+      - ".:/root/yelp_analysis/"
+    environment:
+      CASSANDRA_SERVER: "http://cassandra:9042"
+  spark-worker:
+    image: ${SPARK_IMAGE_PREFIX}-worker:${SPARK_BRANCH}
+    container_name: spark-worker
+    depends_on:
+      - cassandra
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      CASSANDRA_SERVER: "http://cassandra:9042"
+  cassandra:
+    image: ${CASSANDRA_IMAGE}:${CASSANDRA_BRANCH}
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - "./data/cassandra:/var/lib/cassandra"
+
