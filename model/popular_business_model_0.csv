@@ -1,0 +1,9 @@
+feature,weight
+stars,0.25
+review_count,0.15
+is_open,0.15
+useful,0.10
+funny,0.05
+cool,0.05
+date,0.20
+sentiment,0.05

@@ -1,0 +1,13 @@
+\contentsline {section}{1. Problem}{2}{section*.2}% 
+\contentsline {section}{2. Methodology}{2}{section*.3}% 
+\contentsline {subsection}{2.1. Datasets}{2}{section*.4}% 
+\contentsline {subsection}{2.2. Data Modeling}{3}{section*.5}% 
+\contentsline {section}{3. Implementation}{3}{section*.6}% 
+\contentsline {subsection}{3.1. System Architecture}{3}{section*.7}% 
+\contentsline {subsection}{3.2. ETL}{4}{section*.8}% 
+\contentsline {subsection}{3.3. Data Analysis}{4}{section*.9}% 
+\contentsline {subsection}{3.4. Advanced Analytics}{4}{section*.10}% 
+\contentsline {section}{4. Results}{5}{section*.11}% 
+\contentsline {subsection}{4.1. Business Insights}{5}{section*.12}% 
+\contentsline {subsection}{4.2. Review Insights}{5}{section*.13}% 
+\contentsline {subsection}{4.3. Business Review Insights}{6}{section*.14}% 

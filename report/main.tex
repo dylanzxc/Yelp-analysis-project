@@ -1,0 +1,321 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+%  Ted Pavlic (http://www.tedpavlic.com)
+% Modified by:
+%  Joe Del Rocco (https://joe.delrocco.org)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%  PACKAGES AND CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\documentclass[fleqn]{article}
+\usepackage{geometry}
+\usepackage{fancyhdr} % For custom headers
+\usepackage{lastpage} % To determine the last page for the footer
+\usepackage{extramarks} % For headers and footers
+\usepackage[most]{tcolorbox} % For problem answer sections
+\usepackage{graphicx} % For inserting images
+\usepackage{xcolor} % For link coloring
+\usepackage[hidelinks]{hyperref} % For URL links (no box or color name)
+\usepackage{listings}
+\usepackage{amssymb}
+
+% Margins
+\geometry{
+a4paper,
+tmargin=1in,
+bmargin=1in,
+lmargin=1in,
+rmargin=1in,
+textwidth=6.5in,
+textheight=9.0in,
+headsep=0.25in
+}
+
+% Header and footer
+\pagestyle{fancy}
+\lhead{\myName} % Top left header
+\chead{\myCourse} % Top center header
+\rhead{\myAssignment} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+% Other configurations
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\setlength\parskip{1pt} % Ensures paragraphs are still recognizable as such
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\setcounter{tocdepth}{3} % Sets depth of table of contents
+\linespread{1.1}
+
+% Template values
+\newcommand{\myLogo}{sfu-logo@2x.png}
+\newcommand{\myName}{Group: \textbf{Yelp Analysis}}
+\newcommand{\myInstructor}{\underline{Instructor:} \textbf{Greg Baker}}
+\newcommand{\myJobTitle}{School of Computing Science}
+\newcommand{\myCompany}{Professional Master in Big Data}
+\newcommand{\myLocation}{TBA}
+\newcommand{\myEmail}{}
+\newcommand{\myCourse}{CMPT\ 732: Big Data Lab 1}
+\newcommand{\mySection}{Fall 2019}
+\newcommand{\myTeacher}{Dr. Vassbinder}
+\newcommand{\myAssignment}{Project Report}
+\newcommand{\myGroup}{\underline{Group}: \textbf{Yelp Analysis}}
+\newcommand{\myFirstMember}{Zhixuan Chi, zca92}
+\newcommand{\mySecondMember}{Hengzhi Wu, hwa137}
+\newcommand{\myThirdMember}{Nguyen Cao, nguyenc}
+\newcommand{\myLastMember}{Madana Krishnan V.K, mvadakan}
+
+%----------------------------------------------------------------------------------------
+%  DOCUMENT STRUCTURE (MACROS & ENVIRONMENTS)
+%----------------------------------------------------------------------------------------
+
+% Colored links macro
+\newcommand{\hrefcol}[3] {\href{#1}{\textcolor{#3}{#2}}}
+
+% Creates a counter to keep track of the number of problems
+\newcounter{homeworkProblemCounter}
+
+% Macro for custom title page signature header
+\newsavebox{\myTitleSignature}
+\sbox{\myTitleSignature}{%
+\begin{tabular*}{\textwidth}{@{}l@{}|@{\extracolsep{0.125in}}l@{}}%
+\parbox{4.25in}{\raggedright{\includegraphics[width=0.5\textwidth]{\myLogo}}} &
+\parbox[c][]{3.5in}{{\small \myJobTitle \par}
+                    {\small \myCompany \par} 
+                    {\myInstructor \par} \par}
+\end{tabular*}}
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{%
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak%
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{%
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak%
+\nobreak\extramarks{#1}{}\nobreak%
+}
+
+\newcommand{\homeworkProblemName}{} % Argument = name of problem; default = "Problem #"
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{%
+\stepcounter{homeworkProblemCounter}% % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1}% % Assign \homeworkProblemName the argument
+\section{\homeworkProblemName}% % Make a section in the document with the custom problem count
+}{%
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\begin{tcolorbox}[breakable,enhanced,colback=gray!5!white,title=Answer]%
+#1
+\end{tcolorbox}%
+% Alternative - Makes the box around the problem answer and puts the content inside
+%\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}}
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{% % For sections w/in problems; Argument = name of section (no default)
+\renewcommand{\homeworkSectionName}{#1}% % Assign \homeworkSectionName the argument
+\subsection{\homeworkSectionName}% % Make a subsection with the name of the subsection
+}{%
+}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% Blank out the traditional title page
+\title{\vspace{-1in}} % no title name
+\author{} % no author name
+\date{} % no date listed
+\maketitle % makes this a title page
+
+% Use custom title macro instead
+\usebox{\myTitleSignature}
+\vspace{1in} % spacing below title header
+
+% Assignment title
+{\centering \huge \myAssignment \par}
+{\centering \noindent\rule{4in}{0.1pt} \par}
+\vspace{0.05in}
+{\centering \myCourse, \mySection~\par}
+\vspace{0.05in}
+{\centering \myGroup \par}
+{\centering \myFirstMember \par}
+{\centering \mySecondMember \par}
+{\centering \myThirdMember \par}
+{\centering \myLastMember \par}
+%{\centering Prepared w/ \LaTeX \par}
+\vspace{1in}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1: Probablistic Modeling
+%----------------------------------------------------------------------------------------
+
+%\begin{homeworkProblem}[Exercise \#\arabic{homeworkProblemCounter}] % Use for custom section title
+\begin{homeworkProblem}[1. Problem]
+We are living in the social networking world where individuals are encouraged to leave written reviews, star ratings and sharing photos of their experience about businesses they visit. In fact, some businesses have become popular within a very short time because a famous influencer on the Internet gave them a single positive review. Therefore, we are interested in answering the question: \textbf{Have popular businesses been reviewed positively by some popular users?} \par
+\vspace{5pt}
+We believe that answering the above question is valid and useful for business owners as well as end users because it would bring the following business values:
+\begin{itemize}
+  \item For business owners, they would be interested in knowning whether reviews of well-known influencers would help making positive impact to their businesses.
+  \item For end users, knowing which businesses have been reviewed positively by famous, trusted people would help them make better choices for their needs.
+\end{itemize}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2. Methodology]
+Our approach to answer the question of interests is to use publicly available \textbf{review datasets}, analyze such data using our computation resources in order to find the \textbf{correlation} between \textit{how popular a business is} and \textit{the number of popular users have given positive reviews} about that business. 
+
+\begin{homeworkSection}{2.1. Datasets}
+\vspace{5pt}
+\textbf{Yelp Dataset}: a public review dataset with about \textbf{8GB} in size and distributed as structured JSON files. Two biggest files are about users and reviews which is about 2GB and 5GB corerspondingly. The following table provides an overview of the structure of each file. \par 
+\begin{center}
+  \hspace{0.25in} \includegraphics[width=0.9\textwidth]{picture_11.png} \par
+\end{center}
+\begin{itemize}
+  \item In order to answer the question, we will only need \textbf{Business}, \textbf{User} and \textbf{Review} data. 
+  \item We also use \textbf{Checkin} as a feature when defining how popular a business is.
+\end{itemize}
+\vspace{5pt}
+\textbf{TripAdvisor \& Google Reviews}: two additional online services we use to search for the ratings and reviews of about 100 restaurants manually extracted from Yelp data. The collected data is used to learn automatically the weights of business popularity model. 
+\end{homeworkSection}
+
+\begin{homeworkSection}{2.2. Data Modeling}
+\vspace{5pt}
+\textbf{Popular Business}: a business is considered popular depending on its \textbf{stars} ratings, the \textbf{number reviews} it got, whether it is still \textbf{opening}, whether its reviews are \textbf{useful}, \textbf{funny}, \textbf{cool} and got many \textbf{checkins}. These data is available from \textbf{Business}, \textbf{Review} and \textbf{Checkin} files of Yelp dataset. Each business will be associated with a score measuring how popularity it is based on these defining features. \par 
+\vspace{5pt}
+\textbf{Popular User}: a user is considered popular depending on his/her \textbf{elite} status, the number of \textbf{fans}, \textbf{friends}, the number of \textbf{reviews} he/she made, and how many \textbf{compliment} he/she has received. These data is available from \textbf{User} file of Yelp dataset. Each user will be associated with a score measuring how popularity he/she is based on these defining features. \par
+\vspace{5pt}
+We want to measure how many popular users have given positive reviews to those popular businesses. The question of interest is answer by computing the \textbf{correlation} between two ordered lists:
+\begin{itemize}
+  \item The ordered list of businesses with values as their \textbf{popularity scores}, sorted by their popularity scores. 
+  \item The ordered list of businesses with values as their \textbf{number of popular users given positive reviews}, sorted by the businesses' popularity scores.
+\end{itemize}
+\end{homeworkSection}
+
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}[3. Implementation]
+\vspace{5pt}
+
+\begin{homeworkSection}{3.1. System Architecture}
+
+\includegraphics[width=0.85\textwidth]{picture_1.png}
+
+\begin{itemize}
+  \item AWS S3 bucket is used to stored raw Yelp data JSON files.
+  \item Spark and Hadoop setup in our lab cluster help in performing large-scale analysis on the data. 
+  \item Cassandra is used as a temporary data store for storing intermediate data between analysis steps as well as served as faster data access for Spark jobs compared to sequential data access of HDFS files.
+  \item PostgreSQL DB is setup on an AWS EC2 instance to store results of analysis of Spark jobs. Since the results would not be large, so we do not worry much about the scalability of PostgreSQL DB.
+  \item Redash, which is hosted using another AWS EC2 instance is used for visualizing the analysis in the form of figures, charts, and tables. 
+  \item Celery works as a group of task executors in order to perform data query against Redash requests.
+\end{itemize}
+\end{homeworkSection}
+
+\begin{homeworkSection}{3.2. ETL}
+\vspace{5pt}
+
+\begin{itemize}
+  \item A HDFS command copies only needed JSON files from AWS S3 bucket and stores into Hadoop HDFS.
+  \item Spark jobs load copied JSON files from Hadoop HDFS and stores into Cassandra tables.
+  \item Spark jobs load data from Cassandra tables to build popular businesses, popular users and store them into corresponding Cassandra tables. The features from businesses and users tables are normalized before performing analysis to ensure that the values among all the features are in a similar case.
+  \item Spark jobs load result data from Cassandra tables and store into Postgres DB for visualization using Redash
+\end{itemize}  
+
+\end{homeworkSection}
+
+\begin{homeworkSection}{3.3. Data Analysis}
+  \vspace{5pt}
+  
+  \begin{itemize}
+    \item Each business/user is associated with a popularity score based on several features in the Data Modeling section. The analysis process is conducted as in the below diagram. \par \includegraphics[width=0.9\textwidth]{picture_9.png}
+    \item Base on review data, we measure how many popular users have reviewed positively (with rating larger than certain value, for example 3) to a business. Then the correlation is computed based on the business popularity score and its corresponding number of popular users have reviewed it positively \par \includegraphics[width=0.9\textwidth]{picture_10.png}
+  \end{itemize}  
+  
+\end{homeworkSection}
+
+\begin{homeworkSection}{3.4. Advanced Analytics}
+  \vspace{5pt}
+  
+  \begin{itemize}
+    \item \textbf{Sentiment Analysis of User Reviews}: We have done more feature engineering to get better popular business model by using NLP on text review data. We used NLTK with SparkML to assign each review into three categories: \textbf{Positive}, \textbf{Negative} and \textbf{Neutral} and use that as additional feature in our business popularity model and other analysis. \par \includegraphics[width=0.9\textwidth]{picture_2.png}
+    \item \textbf{Regression Model to learn business popularity weights}: We also want to learn the weights of features in our business popularity model automatically instead of manually assigning values to these features. To do that, we use other data about 100 restaurants in Toronto collected from TripAdvisor and Google Reviews. This data is served as label to regression model with input data from our corresponding Yelp data. 
+  \end{itemize}
+\end{homeworkSection}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[4. Results]
+
+\begin{homeworkSection}{4.1. Business Insights}
+\vspace{5pt}
+Live Dashboard (click to view online): \href{http://18.206.223.176:5000/public/dashboards/NgDgfClanpltU2wTMOsH88ARuOb63KI6y9JsD21S?org_slug=default}{Yelp Business}\par 
+\vspace{5pt}
+We are able to get general insights about businesses from Yelp dataset
+\begin{itemize}
+  \item Total number of businesses in which how many of them are actively opening and have been closed.
+  \item Top cities of active businesses.
+  \item Top categories of active businesses.
+  \item Top cities with their corresponding categories of active businesses
+\end{itemize}
+\begin{center}
+  \includegraphics[width=1\textwidth]{picture_6.png}
+\end{center}
+\end{homeworkSection}
+
+\begin{homeworkSection}{4.2. Review Insights}
+\vspace{5pt}
+  Live Dashboard (click to view online): \href{http://18.206.223.176:5000/public/dashboards/pDlkbZHjXlA8dYEjNVPrxf70fYP0odjaFxyucZ5r?org_slug=default}{Yelp Review}\par
+\vspace{5pt}
+We are able to get review insights from Yelp dataset
+\begin{itemize}
+  \item Top cities based on the averaged number of reviews.
+  \item Top categories with averaged number of postive, negative and neutral reviews.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=1\textwidth]{picture_4.png}
+\end{center}
+\end{homeworkSection}
+
+\begin{homeworkSection}{4.3. Business Review Insights}
+  \vspace{10pt}
+  We are able to get business review insights from Yelp dataset
+  \begin{itemize}
+    \item Highly recommendated businesses are reviewed positively by popular users.
+    \item Top categories show that there is even higher correlation between highly recommendated businesses and their positive reviews by popular users.
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=1\textwidth]{picture_7.png}
+    \includegraphics[width=1\textwidth]{picture_8.png}
+  \end{center}
+  \end{homeworkSection}
+
+%-----------------------------------------------
+\end{homeworkProblem}
+
+\end{document}
+%----------------------------------------------------------------------------------------
+%	DONE
+%----------------------------------------------------------------------------------------

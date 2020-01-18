@@ -1,0 +1,16 @@
+CREATE TABLE yelp.business (
+  business_id text PRIMARY KEY,
+  name text,
+  address text,
+  city text,
+  state text,
+  postal_code text,
+  latitude float,
+  longitude float,
+  stars float,
+  review_count int,
+  is_open int,
+  attributes map<text,text>,
+  categories text,
+  hours map<text,text>,
+);
